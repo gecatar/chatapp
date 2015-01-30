@@ -43,4 +43,14 @@ public interface Communicator {
 	 */
 	public void processMesage(Message message, MessageTransferer transferer);
 
+	/**
+	 * Start connection whit remote server.
+	 * 
+	 * @param ip
+	 *            the address remote server.
+	 * @param port
+	 *            the port remote server.
+	 */
+	public void connect(String ip, int port);
+
 }

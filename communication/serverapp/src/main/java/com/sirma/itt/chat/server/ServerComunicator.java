@@ -21,6 +21,10 @@ public class ServerComunicator implements Communicator {
 		}
 	}
 
+	public void connect(String ip, int port) {
+
+	}
+
 	public void stopConection() {
 		if (conecting) {
 			conecting = false;
@@ -38,5 +42,4 @@ public class ServerComunicator implements Communicator {
 	public void processMesage(Message message, MessageTransferer transferer) {
 
 	}
-
 }

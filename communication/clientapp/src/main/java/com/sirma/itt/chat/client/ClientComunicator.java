@@ -23,20 +23,24 @@ public class ClientComunicator implements Communicator {
 		this.listener = listener;
 	}
 
-	/**
-	 * Start connection whit remote server.
-	 */
 	public void startConection(String ip, int port) {
 		if (!conecting) {
 			conecting = true;
-			try {
-				Socket socket = new Socket(ip, port);
-				addUserSession(new MessageTransferer(this, socket,
-						new ObjectOutputStream(socket.getOutputStream()),
-						new ObjectInputStream(socket.getInputStream())));
-			} catch (IOException e) {
-				stopConection();
-			}
+
+		}
+	}
+
+	/**
+	 * Start connection whit remote server.
+	 */
+	public void connect(String ip, int port) {
+		try {
+			Socket socket = new Socket(ip, port);
+			addUserSession(new MessageTransferer(this, socket,
+					new ObjectOutputStream(socket.getOutputStream()),
+					new ObjectInputStream(socket.getInputStream())));
+		} catch (IOException e) {
+			stopConection();
 		}
 	}
 
@@ -68,5 +72,4 @@ public class ClientComunicator implements Communicator {
 	public void setName(String name) {
 
 	}
-
 }
