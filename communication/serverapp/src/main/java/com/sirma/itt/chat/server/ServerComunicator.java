@@ -13,6 +13,7 @@ public class ServerComunicator implements Communicator {
 	private static final Logger LOGGER = Logger
 			.getLogger(ServerComunicator.class.getName());
 	private ServerSocket serverSocket;
+	private String name;
 	private boolean conecting;
 
 	public void startConection(String ip, int port) {
