@@ -8,6 +8,7 @@ import java.net.Socket;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.comunicator.Communicator;
+import com.sirma.itt.comunicator.ComunicatorListener;
 import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageTransferer;
 
@@ -15,7 +16,12 @@ public class ClientComunicator implements Communicator {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(ClientComunicator.class.getName());
+	private final ComunicatorListener listener;
 	private boolean conecting;
+
+	public ClientComunicator(ComunicatorListener listener) {
+		this.listener = listener;
+	}
 
 	/**
 	 * Start connection whit remote server.
