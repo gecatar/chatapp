@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>serverapp</artifactId>
+  <dependencies>
+		<dependency>
+			<groupId>com.sirma.itt.train</groupId>
+			<artifactId>comunicator</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 </project>
