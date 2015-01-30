@@ -12,6 +12,7 @@ import com.sirma.itt.comunicator.AsynchConnectionRunner;
 import com.sirma.itt.comunicator.Communicator;
 import com.sirma.itt.comunicator.ComunicatorListener;
 import com.sirma.itt.comunicator.Message;
+import com.sirma.itt.comunicator.MessageCommand;
 import com.sirma.itt.comunicator.MessageTransferer;
 
 public class ClientComunicator implements Communicator {
@@ -30,6 +31,7 @@ public class ClientComunicator implements Communicator {
 	public synchronized void startConection(String ip, int port) {
 		if (!conecting) {
 			conecting = true;
+			listener.setConectionStatus(MessageCommand.COMUNICATOR_CONECTING);
 			new AsynchConnectionRunner(this, ip, port).start();
 		}
 	}
@@ -55,6 +57,7 @@ public class ClientComunicator implements Communicator {
 	public synchronized void stopConection() {
 		if (conecting) {
 			conecting = false;
+			listener.setConectionStatus(MessageCommand.COMUNICATOR_DISCONECTED);
 			if (socket != null) {
 				try {
 					socket.close();
