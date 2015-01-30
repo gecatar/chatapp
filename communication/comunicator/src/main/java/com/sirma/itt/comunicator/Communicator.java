@@ -9,7 +9,7 @@ package com.sirma.itt.comunicator;
 public interface Communicator {
 
 	/**
-	 * Start conection.
+	 * Start connection.
 	 * 
 	 * @param ip
 	 * @param port
@@ -17,7 +17,7 @@ public interface Communicator {
 	public void startConection(String ip, int port);
 
 	/**
-	 * Stop conection.
+	 * Stop connection.
 	 */
 	public void stopConection();
 
@@ -36,31 +36,11 @@ public interface Communicator {
 	public void closeUserSession(MessageTransferer transferer);
 
 	/**
-	 * Stop connection attempts.
-	 */
-	public void closeConectorSession();
-
-	/**
-	 * Set name on comunicator.
-	 * 
-	 * @param name
-	 */
-	public void setName(String name);
-
-	/**
 	 * Process message.
 	 * 
 	 * @param mesage
 	 * @param transferator
 	 */
 	public void processMesage(Message message, MessageTransferer transferer);
-
-	/**
-	 * Send message.
-	 * 
-	 * @param name
-	 * @param text
-	 */
-	public void sendMesage(Message message);
 
 }
