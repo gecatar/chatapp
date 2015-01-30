@@ -26,14 +26,14 @@ public interface Communicator {
 	 * 
 	 * @param transferator
 	 */
-	public void addUserSession(DataTransferator transferator);
+	public void addUserSession(MessageTransferer transferer);
 
 	/**
 	 * Remove user.
 	 * 
 	 * @param transferator
 	 */
-	public void closeUserSession(DataTransferator transferator);
+	public void closeUserSession(MessageTransferer transferer);
 
 	/**
 	 * Stop connection attempts.
@@ -53,7 +53,7 @@ public interface Communicator {
 	 * @param mesage
 	 * @param transferator
 	 */
-	public void processMesage(Mesage mesage, DataTransferator transferator);
+	public void processMesage(Message message, MessageTransferer transferer);
 
 	/**
 	 * Send message.
@@ -61,6 +61,6 @@ public interface Communicator {
 	 * @param name
 	 * @param text
 	 */
-	public void sendMesage(String name, String text);
+	public void sendMesage(Message message);
 
 }

@@ -14,16 +14,16 @@ import org.apache.log4j.Logger;
  * @author Evgeni Stefanov
  * 
  */
-public class MessageTranferer extends Thread {
+public class MessageTransferer extends Thread {
 
 	private static final Logger LOGGER = Logger
-			.getLogger(MessageTranferer.class.getName());
+			.getLogger(MessageTransferer.class.getName());
 	private final Communicator communicator;
 	private final Socket socket;
 	private final ObjectOutputStream ost;
 	private final ObjectInputStream ist;
 
-	public MessageTranferer(Communicator communicator, Socket socket,
+	public MessageTransferer(Communicator communicator, Socket socket,
 			ObjectOutputStream ost, ObjectInputStream ist) {
 		this.communicator = communicator;
 		this.socket = socket;
@@ -40,7 +40,7 @@ public class MessageTranferer extends Thread {
 			ost.flush();
 			return true;
 		} catch (IOException e) {
-			// communicator.closeUserSession(this);
+			communicator.closeUserSession(this);
 			LOGGER.log(Level.INFO, "User lost conection.", e);
 			return false;
 		}
@@ -60,12 +60,12 @@ public class MessageTranferer extends Thread {
 	public void run() {
 		try {
 			while (true) {
-				// communicator.processMesage(readMessage(), this);
+				communicator.processMesage(readMessage(), this);
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			LOGGER.log(Level.INFO, "Error when reading.", e);
 		} finally {
-			// communicator.closeUserSession(this);
+			communicator.closeUserSession(this);
 		}
 	}
 
