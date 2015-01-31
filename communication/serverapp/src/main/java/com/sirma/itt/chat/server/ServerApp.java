@@ -8,7 +8,7 @@ public class ServerApp {
 			.getName());
 
 	public static void main(String[] args) {
-
+		new ConectionPanel(null);
 	}
 
 }

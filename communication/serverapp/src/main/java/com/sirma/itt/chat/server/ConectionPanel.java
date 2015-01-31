@@ -27,6 +27,7 @@ public class ConectionPanel extends JFrame {
 	private final JTextField ipAdress = new JTextField(15);
 	private final JTextField port = new JTextField(4);
 	private final JTextArea textArea = new JTextArea();
+	private final Dimension defaultViewDimension = new Dimension(300, 400);
 	private final ActionListener listener;
 
 	/**
@@ -34,8 +35,10 @@ public class ConectionPanel extends JFrame {
 	 */
 	public ConectionPanel(ActionListener listener) {
 		this.listener = listener;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(defaultViewDimension);
 		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		ipAdress.setText("localhost");
 		port.setText("1300");
 		JButton startConection = new JButton("Conect");
