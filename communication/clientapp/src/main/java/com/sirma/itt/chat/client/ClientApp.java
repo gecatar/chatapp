@@ -8,7 +8,7 @@ public class ClientApp {
 			.getName());
 
 	public static void main(String[] args) {
-
+		new View();
 	}
 
 }
