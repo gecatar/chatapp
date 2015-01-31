@@ -26,6 +26,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final UserList userList = new UserList(this);
 	private final ConversationPanel conversationPanel = new ConversationPanel();
 	private final StatusTab statusTab = new StatusTab();
+	private final ClientApp listener;
 	private final JMenuBar menuBar = new JMenuBar();
 	private final JSplitPane splitPane = new JSplitPane();
 	private final String defaultLanguegeId = "BG_LANG";
@@ -43,9 +44,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private String USERNAME_BISY_MESSAGE;
 	private String CONECTING_MESSAGE;
 
-	public View() {
+	public View(ClientApp listener) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(defaultViewDimension);
+		this.listener = listener;
 		splitPane.setLeftComponent(userList);
 		splitPane.setRightComponent(conversationPanel);
 		splitPane.setDividerSize(3);

@@ -6,9 +6,11 @@ public class ClientApp {
 
 	private static final Logger LOGGER = Logger.getLogger(ClientApp.class
 			.getName());
+	private final View view = new View(this);
+	private final ClientComunicator comunicator = new ClientComunicator(view);
 
 	public static void main(String[] args) {
-		new View();
+		new ClientApp();
 	}
 
 }
