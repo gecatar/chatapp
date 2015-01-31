@@ -16,7 +16,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 
+import com.sirma.itt.comunicator.ComponentID;
 import com.sirma.itt.comunicator.ComunicatorListener;
+import com.sirma.itt.comunicator.MessageCommand;
 
 public class View extends JFrame implements ComunicatorListener, ActionListener {
 
@@ -194,18 +196,18 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	 * Change connection status.
 	 */
 	@Override
-	public void setConectionStatus(MesageCommand status) {
-		if (status == MesageCommand.USER_CONECTED) {
+	public void setConectionStatus(MessageCommand status) {
+		if (status == MessageCommand.USER_CONECTED) {
 			connectDialog.setConectionStatus(USER_CONECTED_MESSAGE);
 			statusTab.setConectionStatus(USER_CONECTED_MESSAGE);
 			return;
 		}
-		if (status == MesageCommand.COMUNICATOR_CONECTING) {
+		if (status == MessageCommand.COMUNICATOR_CONECTING) {
 			connectDialog.setConectionStatus(CONECTING_MESSAGE);
 			statusTab.setConectionStatus(CONECTING_MESSAGE);
 			return;
 		}
-		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
+		if (status == MessageCommand.COMUNICATOR_DISCONECTED) {
 			connectDialog.setConectionStatus(USER_DISCONECTED_MESSAGE);
 			statusTab.setConectionStatus(USER_DISCONECTED_MESSAGE);
 			userList.clear();
@@ -217,7 +219,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			}
 			return;
 		}
-		if (status == MesageCommand.INVALID_USER_NAME) {
+		if (status == MessageCommand.INVALID_USER_NAME) {
 			connectDialog.setConectionStatus(USERNAME_BISY_MESSAGE);
 			statusTab.setConectionStatus(USERNAME_BISY_MESSAGE);
 			return;
