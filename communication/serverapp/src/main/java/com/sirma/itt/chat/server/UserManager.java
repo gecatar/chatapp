@@ -17,7 +17,7 @@ public class UserManager {
 	 * Save user in list of registered users.
 	 */
 	public void registerUser(String name, MessageTransferer transferer) {
-		if (!isUserInMap(transferer)) {
+		if (!users.containsKey(name)) {
 			addUserInMap(name, transferer);
 			sendUsersList(transferer);
 			notifyForNewUser(name);
@@ -42,12 +42,10 @@ public class UserManager {
 	/**
 	 * Send message to specified user.
 	 */
-	public boolean sendMesageToUser(String sender, String receiver, String text) {
-		if (users.containsKey(receiver)) {
-			return users.get(receiver).sendData(
-					new Message(sender, receiver, text));
+	public void sendMesageToUser(Message message) {
+		if (users.containsKey(message.receiver)) {
+			users.get(message.receiver).sendData(message);
 		}
-		return false;
 	}
 
 	/**

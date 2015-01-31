@@ -89,10 +89,8 @@ public class ServerComunicator implements Communicator {
 	public void processMesage(Message message, MessageTransferer transferer) {
 		if (message.commandID == MessageCommand.USER_LOG_IN) {
 			userManager.registerUser(message.sender, transferer);
-		}
-		if (message.commandID == MessageCommand.TEXT_MESAGE) {
-			userManager.sendMesageToUser(message.sender, message.receiver,
-					message.text);
+		} else {
+			userManager.sendMesageToUser(message);
 		}
 	}
 }
