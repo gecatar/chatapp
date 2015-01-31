@@ -45,9 +45,11 @@ public class ConectionDialog extends JDialog implements ActionListener {
 		JButton startConection = new JButton(
 				bundle.getString("conect_button_name"));
 		startConection.setName(ComponentID.CONECT_BUTTON_ID);
+		startConection.addActionListener(this);
 		JButton stopConection = new JButton(
 				bundle.getString("disconect_button_name"));
 		stopConection.setName(ComponentID.DISCONECT_BUTTON_ID);
+		stopConection.addActionListener(this);
 		JLabel conectionStatusLabel = new JLabel(
 				bundle.getString("conection_status_name"));
 		JLabel ipLabel = new JLabel(bundle.getString("ip_label_name"));
