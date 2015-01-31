@@ -28,6 +28,7 @@ public class ClientComunicator implements Communicator {
 		this.listener = listener;
 	}
 
+	@Override
 	public synchronized void startConection(String ip, int port) {
 		if (!conecting) {
 			conecting = true;
@@ -39,6 +40,7 @@ public class ClientComunicator implements Communicator {
 	/**
 	 * Start connection whit remote server.
 	 */
+	@Override
 	public void connect(String ip, int port) {
 		try {
 			socket = new Socket(ip, port);
@@ -54,6 +56,7 @@ public class ClientComunicator implements Communicator {
 	/**
 	 * Stop connection and close socket.
 	 */
+	@Override
 	public synchronized void stopConection() {
 		if (conecting) {
 			conecting = false;
@@ -68,14 +71,18 @@ public class ClientComunicator implements Communicator {
 		}
 	}
 
+	@Override
 	public void addUserSession(MessageTransferer transferer) {
-
+		transferer.start();
+		transferer.sendData(new Message(name, MessageCommand.USER_LOG_IN));
 	}
 
+	@Override
 	public void closeUserSession(MessageTransferer transferer) {
-
+		stopConection();
 	}
 
+	@Override
 	public void processMesage(Message message, MessageTransferer transferer) {
 
 	}
