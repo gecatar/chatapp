@@ -1,7 +1,12 @@
 package com.sirma.itt.chat.server;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
+import java.net.Socket;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.sirma.itt.comunicator.AsynchConnectionRunner;
@@ -34,13 +39,33 @@ public class ServerComunicator implements Communicator {
 	}
 
 	public void connect(String ip, int port) {
-
+		try {
+			serverSocket = new ServerSocket(port);
+			while (true) {
+				Socket socket = serverSocket.accept();
+				LOGGER.log(Level.INFO, "New User connected");
+				addUserSession(new MessageTransferer(this, socket,
+						new ObjectOutputStream(socket.getOutputStream()),
+						new ObjectInputStream(socket.getInputStream())));
+			}
+		} catch (IOException e) {
+			LOGGER.log(Level.INFO, e);
+		} finally {
+			stopConection();
+		}
 	}
 
 	public synchronized void stopConection() {
 		if (conecting) {
 			conecting = false;
 			listener.setConectionStatus(MessageCommand.COMUNICATOR_DISCONECTED);
+			if (serverSocket != null) {
+				try {
+					serverSocket.close();
+				} catch (IOException e) {
+					LOGGER.log(Level.INFO, e);
+				}
+			}
 		}
 	}
 
