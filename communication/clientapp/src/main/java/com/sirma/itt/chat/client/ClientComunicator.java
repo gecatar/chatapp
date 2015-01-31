@@ -84,7 +84,19 @@ public class ClientComunicator implements Communicator {
 
 	@Override
 	public void processMesage(Message message, MessageTransferer transferer) {
+		if (message.commandID == MessageCommand.INVALID_USER_NAME) {
+			listener.setConectionStatus(MessageCommand.INVALID_USER_NAME);
+		}
+		if (message.commandID == MessageCommand.TEXT_MESAGE) {
+			listener.showMesage(message.sender, message.text);
+		}
 
+		if (message.commandID == MessageCommand.USER_CONECTED) {
+			listener.addUser(message.sender);
+		}
+		if (message.commandID == MessageCommand.USER_DISCONECTED) {
+			listener.removeUser(message.sender);
+		}
 	}
 
 	public void sendMesage(Message message) {
