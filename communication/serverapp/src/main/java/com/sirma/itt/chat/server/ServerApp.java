@@ -6,6 +6,8 @@ public class ServerApp {
 
 	private static final Logger LOGGER = Logger.getLogger(ServerApp.class
 			.getName());
+	private final ConectionPanel view = new ConectionPanel(this);
+	private final ServerComunicator comunicator = new ServerComunicator(view);
 
 	public static void main(String[] args) {
 		new ConectionPanel(null);

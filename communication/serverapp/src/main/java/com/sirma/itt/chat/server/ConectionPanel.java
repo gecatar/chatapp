@@ -2,6 +2,7 @@ package com.sirma.itt.chat.server;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
@@ -14,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.comunicator.ComponentID;
+import com.sirma.itt.comunicator.ComunicatorListener;
+import com.sirma.itt.comunicator.MessageCommand;
 
 /**
  * Manage user connection request.
@@ -21,19 +24,20 @@ import com.sirma.itt.comunicator.ComponentID;
  * @author Evgeni Stefanov
  * 
  */
-public class ConectionPanel extends JFrame {
+public class ConectionPanel extends JFrame implements ComunicatorListener,
+		ActionListener {
 
 	private static final String newLine = System.getProperty("line.separator");
 	private final JTextField ipAdress = new JTextField(15);
 	private final JTextField port = new JTextField(4);
 	private final JTextArea textArea = new JTextArea();
 	private final Dimension defaultViewDimension = new Dimension(300, 400);
-	private final ActionListener listener;
+	private final ServerApp listener;
 
 	/**
 	 * Create connection user interface.
 	 */
-	public ConectionPanel(ActionListener listener) {
+	public ConectionPanel(ServerApp listener) {
 		this.listener = listener;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(defaultViewDimension);
@@ -43,10 +47,10 @@ public class ConectionPanel extends JFrame {
 		port.setText("1300");
 		JButton startConection = new JButton("Conect");
 		startConection.setName(ComponentID.CONECT_BUTTON_ID);
-		startConection.addActionListener(listener);
+		startConection.addActionListener(this);
 		JButton stopConection = new JButton("Disconect");
 		stopConection.setName(ComponentID.DISCONECT_BUTTON_ID);
-		stopConection.addActionListener(listener);
+		stopConection.addActionListener(this);
 		JLabel ipLabel = new JLabel("IP Adress");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ipAdress.setMaximumSize(new Dimension(150, 20));
@@ -88,6 +92,26 @@ public class ConectionPanel extends JFrame {
 
 	public int getPort() {
 		return Integer.parseInt(port.getText());
+	}
+
+	public void setConectionStatus(MessageCommand status) {
+
+	}
+
+	public void showMesage(String name, String text) {
+
+	}
+
+	public void addUser(String name) {
+
+	}
+
+	public void removeUser(String name) {
+
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+
 	}
 
 }
