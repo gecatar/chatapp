@@ -9,6 +9,14 @@ public class ServerApp {
 	private final ConectionPanel view = new ConectionPanel(this);
 	private final ServerComunicator comunicator = new ServerComunicator(view);
 
+	public void startConection(String ip, int port) {
+		comunicator.startConection(ip, port);
+	}
+
+	public void stopConnection() {
+		comunicator.stopConection();
+	}
+
 	public static void main(String[] args) {
 		new ServerApp();
 	}

@@ -95,7 +95,12 @@ public class ConectionPanel extends JFrame implements ComunicatorListener,
 	}
 
 	public void setConectionStatus(MessageCommand status) {
-
+		if (status == MessageCommand.COMUNICATOR_CONECTING) {
+			displayMessage("Waiting for clients...");
+		}
+		if (status == MessageCommand.COMUNICATOR_DISCONECTED) {
+			displayMessage("Close connection.");
+		}
 	}
 
 	public void showMesage(String name, String text) {
@@ -114,7 +119,8 @@ public class ConectionPanel extends JFrame implements ComunicatorListener,
 		if (event.getSource() instanceof JButton) {
 			JButton button = (JButton) event.getSource();
 			if (button.getName().equals(ComponentID.CONECT_BUTTON_ID)) {
-
+				listener.startConection(ipAdress.getText(),
+						Integer.parseInt(port.getText()));
 			}
 			if (button.getName().equals(ComponentID.DISCONECT_BUTTON_ID)) {
 
