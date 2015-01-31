@@ -10,7 +10,7 @@ public class ServerApp {
 	private final ServerComunicator comunicator = new ServerComunicator(view);
 
 	public static void main(String[] args) {
-		new ConectionPanel(null);
+		new ServerApp();
 	}
 
 }
