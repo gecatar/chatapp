@@ -110,8 +110,16 @@ public class ConectionPanel extends JFrame implements ComunicatorListener,
 
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() instanceof JButton) {
+			JButton button = (JButton) event.getSource();
+			if (button.getName().equals(ComponentID.CONECT_BUTTON_ID)) {
 
+			}
+			if (button.getName().equals(ComponentID.DISCONECT_BUTTON_ID)) {
+
+			}
+		}
 	}
 
 }
