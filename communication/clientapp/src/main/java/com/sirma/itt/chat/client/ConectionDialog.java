@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
@@ -19,18 +21,20 @@ import com.sirma.itt.comunicator.ComponentID;
  * @author Evgeni Stefanov
  * 
  */
-public class ConectionDialog extends JDialog {
+public class ConectionDialog extends JDialog implements ActionListener {
 
 	private final JTextField ipAdress = new JTextField(15);
 	private final JTextField port = new JTextField(4);
 	private final JTextField nickname = new JTextField(10);
 	private final JLabel conectionStatus = new JLabel();
 	private final Dimension dialogDimension = new Dimension(400, 300);
+	private final ClientApp listener;
 
 	/**
 	 * Create connection user interface.
 	 */
-	public ConectionDialog(ResourceBundle bundle) {
+	public ConectionDialog(ResourceBundle bundle, ClientApp listener) {
+		this.listener = listener;
 		setTitle(bundle.getString("conection_tab_name"));
 		setLayout(new GridBagLayout());
 		setSize(dialogDimension);
@@ -109,5 +113,19 @@ public class ConectionDialog extends JDialog {
 	 */
 	public void setConectionStatus(String conectionCondition) {
 		conectionStatus.setText(conectionCondition);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() instanceof JButton) {
+			JButton button = (JButton) event.getSource();
+			if (button.getName().equals(ComponentID.CONECT_BUTTON_ID)) {
+				listener.startConection(nickname.getText(), ipAdress.getText(),
+						Integer.parseInt(port.getText()));
+			}
+			if (button.getName().equals(ComponentID.DISCONECT_BUTTON_ID)) {
+				listener.stopConnection();
+			}
+		}
 	}
 }

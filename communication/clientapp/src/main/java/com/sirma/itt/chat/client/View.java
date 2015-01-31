@@ -98,7 +98,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		messageNotifyer = new MessageNotifyer(
 				bundle.getString("you_have_message"),
 				bundle.getString("message_message"));
-		connectDialog = new ConectionDialog(bundle);
+		connectDialog = new ConectionDialog(bundle, listener);
 	}
 
 	@Override
