@@ -123,7 +123,7 @@ public class ConectionPanel extends JFrame implements ComunicatorListener,
 						Integer.parseInt(port.getText()));
 			}
 			if (button.getName().equals(ComponentID.DISCONECT_BUTTON_ID)) {
-
+				listener.stopConnection();
 			}
 		}
 	}
