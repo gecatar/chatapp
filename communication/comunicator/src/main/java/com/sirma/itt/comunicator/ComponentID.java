@@ -6,7 +6,7 @@ package com.sirma.itt.comunicator;
  * @author GecaTM
  * 
  */
-interface ComponentID {
+public interface ComponentID {
 
 	public static final String CONECT_BUTTON_ID = "CONECT_BUTTON";
 	public static final String DISCONECT_BUTTON_ID = "DISCONECT_BUTTON";
