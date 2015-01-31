@@ -16,6 +16,7 @@ public class ServerComunicator implements Communicator {
 	private static final Logger LOGGER = Logger
 			.getLogger(ServerComunicator.class.getName());
 	private final ComunicatorListener listener;
+	private final UserManager userManager = new UserManager();
 	private ServerSocket serverSocket;
 	private String name;
 	private boolean conecting;
@@ -43,15 +44,30 @@ public class ServerComunicator implements Communicator {
 		}
 	}
 
+	/**
+	 * Start DataTransferator. Add user to unregistered user list.
+	 */
 	public void addUserSession(MessageTransferer transferer) {
-
+		transferer.start();
 	}
 
+	/**
+	 * Close User DataTransferator, remove user from list and notify all users.
+	 */
 	public void closeUserSession(MessageTransferer transferer) {
-
+		userManager.removeUser(transferer);
 	}
 
+	/**
+	 * Redirect message.
+	 */
 	public void processMesage(Message message, MessageTransferer transferer) {
-
+		if (message.commandID == MessageCommand.USER_LOG_IN) {
+			userManager.registerUser(message.sender, transferer);
+		}
+		if (message.commandID == MessageCommand.TEXT_MESAGE) {
+			userManager.sendMesageToUser(message.sender, message.receiver,
+					message.text);
+		}
 	}
 }
