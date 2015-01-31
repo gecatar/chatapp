@@ -104,6 +104,7 @@ public class ClientComunicator implements Communicator {
 
 	public void sendMesage(Message message) {
 		if (transferer != null) {
+			message.sender = name;
 			transferer.sendData(message);
 		}
 	}
