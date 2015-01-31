@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -93,7 +94,6 @@ public class Conversation extends JSplitPane implements ActionListener,
 	/**
 	 * Detect when user send new message.
 	 */
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		messageLogger.logMessage(textField.getText());
 		String htmlMessage = myMessageHTMLopenTag + textField.getText()
@@ -106,7 +106,6 @@ public class Conversation extends JSplitPane implements ActionListener,
 	/**
 	 * Action listener.
 	 */
-	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource().getClass() == JTextField.class) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -125,37 +124,37 @@ public class Conversation extends JSplitPane implements ActionListener,
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-
-	}
-
-	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		view.clearNotification(getName());
 	}
 
-	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 
 	}
 }
