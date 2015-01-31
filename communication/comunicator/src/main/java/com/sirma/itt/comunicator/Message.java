@@ -28,4 +28,9 @@ public class Message implements Serializable {
 		this.commandID = commandID;
 		sender = name;
 	}
+
+	public Message(String receiver, String text) {
+		this.receiver = receiver;
+		this.text = text;
+	}
 }

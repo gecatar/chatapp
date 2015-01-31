@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import com.sirma.itt.comunicator.Message;
+
 /**
  * Manage sending and receiving messages.
  * 
@@ -101,6 +103,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 		textArea.setText("<font face=\"veranda\" size=\"3\" color=\"red\"><i> an h1 header</i></font>"
 				+ textArea.getText());
 		textField.setText("");
+		view.sendMessage(new Message(getName(), "proba"));
 	}
 
 	/**

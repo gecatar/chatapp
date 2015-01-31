@@ -21,6 +21,7 @@ public class ClientComunicator implements Communicator {
 			.getLogger(ClientComunicator.class.getName());
 	private final ComunicatorListener listener;
 	private Socket socket;
+	private MessageTransferer transferer;
 	private String name;
 	private boolean conecting;
 
@@ -73,6 +74,7 @@ public class ClientComunicator implements Communicator {
 
 	@Override
 	public void addUserSession(MessageTransferer transferer) {
+		this.transferer = transferer;
 		transferer.start();
 		transferer.sendData(new Message(name, MessageCommand.USER_LOG_IN));
 		listener.setConectionStatus(MessageCommand.USER_CONECTED);
@@ -101,7 +103,9 @@ public class ClientComunicator implements Communicator {
 	}
 
 	public void sendMesage(Message message) {
-
+		if (transferer != null) {
+			transferer.sendData(message);
+		}
 	}
 
 	public void setName(String name) {

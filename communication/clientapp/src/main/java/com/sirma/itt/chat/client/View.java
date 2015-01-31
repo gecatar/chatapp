@@ -18,6 +18,7 @@ import javax.swing.JSplitPane;
 
 import com.sirma.itt.comunicator.ComponentID;
 import com.sirma.itt.comunicator.ComunicatorListener;
+import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageCommand;
 
 public class View extends JFrame implements ComunicatorListener, ActionListener {
@@ -177,6 +178,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			messageNotifyer.removeNotification(name);
 			setTitle(messageNotifyer.getNotificationText());
 		}
+	}
+
+	public void sendMessage(Message message) {
+		listener.sendMessage(message);
 	}
 
 	/**
