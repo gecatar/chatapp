@@ -10,6 +10,7 @@ public class ClientApp {
 	private final ClientComunicator comunicator = new ClientComunicator(view);
 
 	public void startConection(String name, String ip, int port) {
+		comunicator.setName(name);
 		comunicator.startConection(ip, port);
 	}
 

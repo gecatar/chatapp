@@ -105,6 +105,6 @@ public class ClientComunicator implements Communicator {
 	}
 
 	public void setName(String name) {
-
+		this.name = name;
 	}
 }
