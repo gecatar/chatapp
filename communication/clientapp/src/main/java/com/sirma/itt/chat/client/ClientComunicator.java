@@ -75,6 +75,7 @@ public class ClientComunicator implements Communicator {
 	public void addUserSession(MessageTransferer transferer) {
 		transferer.start();
 		transferer.sendData(new Message(name, MessageCommand.USER_LOG_IN));
+		listener.setConectionStatus(MessageCommand.USER_CONECTED);
 	}
 
 	@Override
@@ -86,17 +87,17 @@ public class ClientComunicator implements Communicator {
 	public void processMesage(Message message, MessageTransferer transferer) {
 		if (message.commandID == MessageCommand.INVALID_USER_NAME) {
 			listener.setConectionStatus(MessageCommand.INVALID_USER_NAME);
+			return;
 		}
-		if (message.commandID == MessageCommand.TEXT_MESAGE) {
-			listener.showMesage(message.sender, message.text);
-		}
-
 		if (message.commandID == MessageCommand.USER_CONECTED) {
 			listener.addUser(message.sender);
+			return;
 		}
 		if (message.commandID == MessageCommand.USER_DISCONECTED) {
 			listener.removeUser(message.sender);
+			return;
 		}
+		listener.showMesage(message.sender, message.text);
 	}
 
 	public void sendMesage(Message message) {
