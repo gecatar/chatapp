@@ -101,11 +101,12 @@ public class Conversation extends JSplitPane implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		messageLogger.logMessage(textField.getText());
-		htmlMessage = htmlMessage + myMessageHTMLopenTag + "sdfsdf" + "<br>"
+		htmlMessage = htmlMessage + myMessageHTMLopenTag
+				+ createMessage(getName(), textField.getText()) + "<br>"
 				+ myMessageHTMLcloseTag;
 		textArea.setText(htmlMessage);
+		view.sendMessage(new Message(getName(), textField.getText()));
 		textField.setText("");
-		view.sendMessage(new Message(getName(), "proba"));
 	}
 
 	/**
