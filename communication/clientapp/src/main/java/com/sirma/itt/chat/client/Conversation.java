@@ -28,14 +28,17 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	private static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy/MM/dd HH:mm:ss");
-	private static final String myMessageHTMLopenTag = "<b style=\"color:pink\">";
-	private static final String myMessageHTMLcloseTag = "</span>";
+	private static final String myMessageHTMLopenTag = "<font size=\"3\" color=\"red\">";
+	private static final String myMessageHTMLcloseTag = "</font>";
+	private static final String otherMessageHTMLopenTag = "<b style=\"color:pink\">";
+	private static final String otherMessageHTMLcloseTag = "</span>";
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final View view;
 	private final JEditorPane textArea = new JEditorPane();
 	private final JTextField textField = new JTextField();
 	private final Double dividerLocation = 0.85D;
+	private String htmlMessage = "";
 	private boolean conected = false;
 
 	/**
@@ -98,10 +101,9 @@ public class Conversation extends JSplitPane implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		messageLogger.logMessage(textField.getText());
-		String htmlMessage = myMessageHTMLopenTag + textField.getText()
+		htmlMessage = htmlMessage + myMessageHTMLopenTag + "sdfsdf" + "<br>"
 				+ myMessageHTMLcloseTag;
-		textArea.setText("<font face=\"veranda\" size=\"3\" color=\"red\"><i> an h1 header</i></font>"
-				+ textArea.getText());
+		textArea.setText(htmlMessage);
 		textField.setText("");
 		view.sendMessage(new Message(getName(), "proba"));
 	}
