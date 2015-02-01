@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 
 import com.sirma.itt.comunicator.AsynchConnectionRunner;
 import com.sirma.itt.comunicator.Communicator;
-import com.sirma.itt.comunicator.ComunicatorListener;
 import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageCommand;
 import com.sirma.itt.comunicator.MessageTransferer;
@@ -19,13 +18,13 @@ public class ClientComunicator implements Communicator {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(ClientComunicator.class.getName());
-	private final ComunicatorListener listener;
+	private final View listener;
 	private Socket socket;
 	private MessageTransferer transferer;
 	private String name;
 	private boolean conecting;
 
-	public ClientComunicator(ComunicatorListener listener) {
+	public ClientComunicator(View listener) {
 		this.listener = listener;
 	}
 
@@ -97,6 +96,10 @@ public class ClientComunicator implements Communicator {
 		}
 		if (message.commandID == MessageCommand.USER_DISCONECTED) {
 			listener.removeUser(message.sender);
+			return;
+		}
+		if (message.commandID == MessageCommand.MESSAGE_SEEN) {
+			listener.showMessageReadedNotification(message.sender);
 			return;
 		}
 		listener.showMesage(message.sender, message.text);
