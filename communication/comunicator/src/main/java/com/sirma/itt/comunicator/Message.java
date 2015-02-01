@@ -13,8 +13,7 @@ public class Message implements Serializable {
 	public String receiver;
 	public String text;
 
-	public Message(String sender, String receiver, String text) {
-		this.sender = sender;
+	public Message(String receiver, String text) {
 		this.receiver = receiver;
 		this.text = text;
 		commandID = MessageCommand.TEXT_MESAGE;
@@ -32,10 +31,5 @@ public class Message implements Serializable {
 	public Message(String name, MessageCommand commandID) {
 		this.commandID = commandID;
 		sender = name;
-	}
-
-	public Message(String receiver, String text) {
-		this.receiver = receiver;
-		this.text = text;
 	}
 }
