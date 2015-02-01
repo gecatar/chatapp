@@ -86,6 +86,14 @@ public class ClientComunicator implements Communicator {
 
 	@Override
 	public void processMesage(Message message, MessageTransferer transferer) {
+		if (message.commandID == MessageCommand.TEXT_MESAGE) {
+			listener.showMesage(message.sender, message.text);
+			return;
+		}
+		if (message.commandID == MessageCommand.MESSAGE_SEEN) {
+			listener.showMessageReadedNotification(message.sender);
+			return;
+		}
 		if (message.commandID == MessageCommand.INVALID_USER_NAME) {
 			listener.setConectionStatus(MessageCommand.INVALID_USER_NAME);
 			return;
@@ -98,11 +106,6 @@ public class ClientComunicator implements Communicator {
 			listener.removeUser(message.sender);
 			return;
 		}
-		if (message.commandID == MessageCommand.MESSAGE_SEEN) {
-			listener.showMessageReadedNotification(message.sender);
-			return;
-		}
-		listener.showMesage(message.sender, message.text);
 	}
 
 	public void sendMesage(Message message) {

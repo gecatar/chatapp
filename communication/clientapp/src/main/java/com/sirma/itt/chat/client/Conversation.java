@@ -128,8 +128,8 @@ public class Conversation extends JSplitPane implements ActionListener,
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// view.clearNotification(getName());
+	public void mouseEntered(MouseEvent event) {
+		view.clearNotification(getName());
 	}
 
 	@Override

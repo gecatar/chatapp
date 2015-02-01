@@ -24,6 +24,11 @@ public class Message implements Serializable {
 		this.commandID = commandID;
 	}
 
+	public Message(MessageCommand commandID, String name) {
+		this.commandID = commandID;
+		receiver = name;
+	}
+
 	public Message(String name, MessageCommand commandID) {
 		this.commandID = commandID;
 		sender = name;
