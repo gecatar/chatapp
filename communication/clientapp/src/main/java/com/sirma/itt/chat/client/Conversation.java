@@ -27,11 +27,11 @@ public class Conversation extends JSplitPane implements ActionListener,
 		KeyListener, MouseListener {
 
 	private static final DateFormat dateFormat = new SimpleDateFormat(
-			"yyyy/MM/dd HH:mm:ss");
-	private static final String myMessageHTMLopenTag = "<font size=\"3\" color=\"red\">";
-	private static final String myMessageHTMLcloseTag = "</font>";
-	private static final String otherMessageHTMLopenTag = "<b style=\"color:pink\">";
-	private static final String otherMessageHTMLcloseTag = "</span>";
+			"MM/dd HH:mm:ss");
+	private static final String myMessageHTMLopenTag = "<font size=\"4\" color=\"black\"><i>";
+	private static final String myMessageHTMLcloseTag = "</i></font>";
+	private static final String otherMessageHTMLopenTag = "<font size=\"4\" color=\"black\">";
+	private static final String otherMessageHTMLcloseTag = "</font>";
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final View view;
@@ -74,13 +74,12 @@ public class Conversation extends JSplitPane implements ActionListener,
 	 */
 	public String createMessage(String name, String text) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("<");
+		stringBuilder.append("&lt;");
 		stringBuilder.append(dateFormat.format(System.currentTimeMillis()));
-		stringBuilder.append("><");
+		stringBuilder.append("&gt;&lt;");
 		stringBuilder.append(name);
-		stringBuilder.append(">");
+		stringBuilder.append("&gt;");
 		stringBuilder.append(text);
-		stringBuilder.append(newLine);
 		return stringBuilder.toString();
 	}
 
@@ -92,7 +91,10 @@ public class Conversation extends JSplitPane implements ActionListener,
 	 * Write message to text area.
 	 */
 	public void writeMesage(String name, String text) {
-		textArea.setText(textArea.getText() + text);
+		htmlMessage = htmlMessage + otherMessageHTMLopenTag
+				+ createMessage(name, text) + "<br>" + otherMessageHTMLcloseTag;
+		textArea.setText(htmlMessage);
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
 
 	/**
@@ -102,9 +104,10 @@ public class Conversation extends JSplitPane implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		messageLogger.logMessage(textField.getText());
 		htmlMessage = htmlMessage + myMessageHTMLopenTag
-				+ createMessage(getName(), textField.getText()) + "<br>"
+				+ createMessage("Me", textField.getText()) + "<br>"
 				+ myMessageHTMLcloseTag;
 		textArea.setText(htmlMessage);
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 		view.sendMessage(new Message(getName(), textField.getText()));
 		textField.setText("");
 	}
