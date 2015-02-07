@@ -28,12 +28,12 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	private static final DateFormat dateFormat = new SimpleDateFormat(
 			"MM/dd HH:mm:ss");
-	private static final String myMessageHTMLopenTag = "<font size=\"4\" color=\"blue\">";
-	private static final String myMessageHTMLcloseTag = "</font>";
-	private static final String otherMessageHTMLopenTag = "<font size=\"4\" color=\"black\">";
+	private static final String myMessageHTMLopenTag = "<font size=\"4\" color=\"black\"><i>";
+	private static final String myMessageHTMLcloseTag = "</i></font>";
+	private static final String otherMessageHTMLopenTag = "<font size=\"4\" color=\"blue\">";
 	private static final String otherMessageHTMLcloseTag = "</font>";
-	private static final String dateFormatHTMLopenTag = "<font size=\"4\"><i>";
-	private static final String dateFormatHTMLcloseTag = "</i></font>";
+	private static final String dateFormatHTMLopenTag = "<font size=\"4\">";
+	private static final String dateFormatHTMLcloseTag = "</font>";
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final View view;
