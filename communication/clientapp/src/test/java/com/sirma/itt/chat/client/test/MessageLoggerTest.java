@@ -22,6 +22,14 @@ public class MessageLoggerTest {
 		messageLogger = new MessageLogger();
 	}
 
+	@Test
+	public void logMessageTest() {
+		messageLogger.logMessage("test");
+		messageLogger.logMessage("test");
+		assertEquals("test", messageLogger.getNextMessage());
+		assertEquals("", messageLogger.getNextMessage());
+	}
+
 	/**
 	 * Check get next message.
 	 */
@@ -41,8 +49,9 @@ public class MessageLoggerTest {
 		messageLogger.logMessage("proba");
 		messageLogger.getNextMessage();
 		messageLogger.getNextMessage();
+		messageLogger.getNextMessage();
+		assertEquals("test", messageLogger.getPreviousMessage());
 		assertEquals("proba", messageLogger.getPreviousMessage());
-		assertEquals("test", messageLogger.getNextMessage());
-		assertEquals("", messageLogger.getNextMessage());
+		assertEquals("", messageLogger.getPreviousMessage());
 	}
 }
