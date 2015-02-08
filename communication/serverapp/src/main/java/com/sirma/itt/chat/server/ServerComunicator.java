@@ -16,6 +16,12 @@ import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageCommand;
 import com.sirma.itt.comunicator.MessageTransferer;
 
+/**
+ * Receive connections from clients and send messages.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ServerComunicator implements Communicator {
 
 	private static final Logger LOGGER = Logger
