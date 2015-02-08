@@ -22,12 +22,6 @@ public class UserList extends JList<String> implements MouseListener {
 	private final DefaultListModel<String> listModel = new DefaultListModel<String>();
 	private final View view;
 
-	public void setLocalDetails(ResourceBundle bundle) {
-		Border border = new TitledBorder(
-				bundle.getString(ComponentID.USER_LIST_BORDER_ID));
-		setBorder(border);
-	}
-
 	public UserList(View view) {
 		setModel(listModel);
 		this.view = view;
@@ -60,16 +54,20 @@ public class UserList extends JList<String> implements MouseListener {
 		listModel.clear();
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("User List:");
-		for (Object name : listModel.toArray()) {
-			stringBuilder.append("->").append(name);
-		}
-		return stringBuilder.toString();
+	/**
+	 * Set local details.
+	 * 
+	 * @param bundle
+	 */
+	public void setLocalDetails(ResourceBundle bundle) {
+		Border border = new TitledBorder(
+				bundle.getString(ComponentID.USER_LIST_BORDER_ID));
+		setBorder(border);
 	}
 
+	/**
+	 * When user select name from list.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
@@ -78,6 +76,19 @@ public class UserList extends JList<String> implements MouseListener {
 				view.showConversation(getSelectedValue());
 			}
 		}
+	}
+
+	/**
+	 * Print all users currently connected.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("User List:");
+		for (Object name : listModel.toArray()) {
+			stringBuilder.append("->").append(name);
+		}
+		return stringBuilder.toString();
 	}
 
 	@Override

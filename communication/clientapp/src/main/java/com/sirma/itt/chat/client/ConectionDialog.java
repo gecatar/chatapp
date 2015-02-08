@@ -97,15 +97,28 @@ public class ConectionDialog extends JDialog implements ActionListener {
 		add(stopConection, gridBagConstraints);
 	}
 
+	/**
+	 * Gets user name.
+	 */
 	@Override
 	public String getName() {
 		return nickname.getText();
 	}
 
+	/**
+	 * Gets IP address.
+	 * 
+	 * @return the IP address.
+	 */
 	public String getIP() {
 		return ipAdress.getText();
 	}
 
+	/**
+	 * Gets port.
+	 * 
+	 * @return
+	 */
 	public int getPort() {
 		return Integer.parseInt(port.getText());
 	}
@@ -117,6 +130,9 @@ public class ConectionDialog extends JDialog implements ActionListener {
 		conectionStatus.setText(conectionCondition);
 	}
 
+	/**
+	 * When user press connect or disconnect buttons.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() instanceof JButton) {

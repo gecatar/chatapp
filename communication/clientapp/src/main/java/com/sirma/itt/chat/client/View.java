@@ -21,6 +21,12 @@ import com.sirma.itt.comunicator.ComunicatorListener;
 import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageCommand;
 
+/**
+ * Create UI for communicator.
+ * 
+ * @author GecaTM
+ *
+ */
 public class View extends JFrame implements ComunicatorListener, ActionListener {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
@@ -102,6 +108,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		connectDialog = new ConectionDialog(bundle, listener);
 	}
 
+	/**
+	 * Add user in user list and update his icon.
+	 */
 	@Override
 	public void addUser(String name) {
 		userList.addUser(name);
@@ -114,6 +123,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		}
 	}
 
+	/**
+	 * Remove user from list and update his icon.
+	 */
 	@Override
 	public void removeUser(String name) {
 		userList.removeUser(name);
@@ -183,6 +195,11 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		}
 	}
 
+	/**
+	 * Send users messages.
+	 * 
+	 * @param message
+	 */
 	public void sendMessage(Message message) {
 		listener.sendMessage(message);
 	}

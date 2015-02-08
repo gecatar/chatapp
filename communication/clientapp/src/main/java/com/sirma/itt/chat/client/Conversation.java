@@ -63,10 +63,21 @@ public class Conversation extends JSplitPane implements ActionListener,
 		setBottomComponent(textField);
 	}
 
+	/**
+	 * Gets connection status.
+	 * 
+	 * @return
+	 */
 	public boolean isConected() {
 		return conected;
 	}
 
+	/**
+	 * Sets connection status.
+	 * 
+	 * @param conected
+	 *            the connection status.
+	 */
 	public void setConected(boolean conected) {
 		this.conected = conected;
 	}
@@ -83,10 +94,6 @@ public class Conversation extends JSplitPane implements ActionListener,
 		stringBuilder.append("&gt;");
 		stringBuilder.append(text);
 		return stringBuilder.toString();
-	}
-
-	public String getTextFieldText() {
-		return textField.getText();
 	}
 
 	/**
@@ -135,6 +142,9 @@ public class Conversation extends JSplitPane implements ActionListener,
 		super.paint(g);
 	}
 
+	/**
+	 * Clear notifications.
+	 */
 	@Override
 	public void mouseEntered(MouseEvent event) {
 		view.clearNotification(getName());
@@ -142,37 +152,31 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 }

@@ -14,6 +14,12 @@ import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageCommand;
 import com.sirma.itt.comunicator.MessageTransferer;
 
+/**
+ * Send and receive messages from server.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ClientComunicator implements Communicator {
 
 	private static final Logger LOGGER = Logger
@@ -28,6 +34,9 @@ public class ClientComunicator implements Communicator {
 		this.listener = listener;
 	}
 
+	/**
+	 * Start connection whit remote server.
+	 */
 	@Override
 	public synchronized void startConection(String ip, int port) {
 		if (!conecting) {
@@ -38,7 +47,7 @@ public class ClientComunicator implements Communicator {
 	}
 
 	/**
-	 * Start connection whit remote server.
+	 * Create connection whit remote server.
 	 */
 	@Override
 	public void connect(String ip, int port) {
@@ -71,6 +80,9 @@ public class ClientComunicator implements Communicator {
 		}
 	}
 
+	/**
+	 * Start message transferer and send user details to server.
+	 */
 	@Override
 	public void addUserSession(MessageTransferer transferer) {
 		this.transferer = transferer;
@@ -79,11 +91,17 @@ public class ClientComunicator implements Communicator {
 		listener.setConectionStatus(MessageCommand.USER_CONECTED);
 	}
 
+	/**
+	 * Stop connection whit remote server.
+	 */
 	@Override
 	public void closeUserSession(MessageTransferer transferer) {
 		stopConection();
 	}
 
+	/**
+	 * Process messages.
+	 */
 	@Override
 	public void processMesage(Message message, MessageTransferer transferer) {
 		if (message.commandID == MessageCommand.TEXT_MESAGE) {
@@ -108,6 +126,12 @@ public class ClientComunicator implements Communicator {
 		}
 	}
 
+	/**
+	 * Send messages to remote server.
+	 * 
+	 * @param message
+	 *            the message that will be send.
+	 */
 	public void sendMesage(Message message) {
 		if (transferer != null) {
 			message.sender = name;
@@ -115,6 +139,12 @@ public class ClientComunicator implements Communicator {
 		}
 	}
 
+	/**
+	 * Set user name.
+	 * 
+	 * @param name
+	 *            the name of user.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

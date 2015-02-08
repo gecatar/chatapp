@@ -33,22 +33,48 @@ public class ConversationPanel extends JTabbedPane {
 		}
 	}
 
+	/**
+	 * Show online icon.
+	 * 
+	 * @param conversation
+	 */
 	public void showOnlineIcon(Conversation conversation) {
 		setIconAt(indexOfComponent(conversation), userOnlineIcon);
 	}
 
+	/**
+	 * Show offline icon.
+	 * 
+	 * @param conversation
+	 */
 	public void showOfflineIcon(Conversation conversation) {
 		setIconAt(indexOfComponent(conversation), userOflineIcon);
 	}
 
+	/**
+	 * Show checked message icon.
+	 * 
+	 * @param conversation
+	 */
 	public void showCheckedMessageIcon(Conversation conversation) {
 		setIconAt(indexOfComponent(conversation), checkedMessageIcon);
 	}
 
+	/**
+	 * Show message icon.
+	 * 
+	 * @param conversation
+	 */
 	public void showNewMessageIcon(Conversation conversation) {
 		setIconAt(indexOfComponent(conversation), newMessageIcon);
 	}
 
+	/**
+	 * Set local details.
+	 * 
+	 * @param bundle
+	 * @param statusTab
+	 */
 	public void setLocalDetails(ResourceBundle bundle, StatusTab statusTab) {
 		addTab(bundle.getString(ComponentID.STATUS_TAB_ID), statusTab);
 	}
