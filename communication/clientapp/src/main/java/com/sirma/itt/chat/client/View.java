@@ -271,6 +271,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		super.paint(arg0);
 	}
 
+	/**
+	 * When user change language.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof Component) {
