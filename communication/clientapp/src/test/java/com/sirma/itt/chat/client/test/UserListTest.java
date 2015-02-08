@@ -56,4 +56,14 @@ public class UserListTest {
 		assertTrue(userList.contains("test"));
 	}
 
+	/**
+	 * Check correct function on contains method.
+	 */
+	@Test
+	public void clearTest() {
+		userList.addUser("test");
+		userList.clear();
+		assertFalse(userList.contains("test"));
+	}
+
 }

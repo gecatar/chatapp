@@ -78,19 +78,6 @@ public class UserList extends JList<String> implements MouseListener {
 		}
 	}
 
-	/**
-	 * Print all users currently connected.
-	 */
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("User List:");
-		for (Object name : listModel.toArray()) {
-			stringBuilder.append("->").append(name);
-		}
-		return stringBuilder.toString();
-	}
-
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 
