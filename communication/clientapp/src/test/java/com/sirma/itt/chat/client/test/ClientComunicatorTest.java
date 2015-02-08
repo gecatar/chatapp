@@ -70,6 +70,10 @@ public class ClientComunicatorTest {
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).addUser(
 				Mockito.anyString());
+		client.processMesage(new Message(MessageCommand.MESSAGE_SEEN),
+				transferer);
+		Mockito.verify(listener, Mockito.atLeast(1))
+				.showMessageReadedNotification(Mockito.anyString());
 		client.processMesage(new Message(MessageCommand.USER_DISCONECTED),
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).removeUser(

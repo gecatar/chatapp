@@ -96,6 +96,7 @@ public class ClientComunicator implements Communicator {
 	 */
 	@Override
 	public void closeUserSession(MessageTransferer transferer) {
+		transferer.closeSocket();
 		stopConection();
 	}
 
