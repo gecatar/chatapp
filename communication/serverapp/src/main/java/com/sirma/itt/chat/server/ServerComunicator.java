@@ -30,6 +30,9 @@ public class ServerComunicator implements Communicator {
 		this.listener = listener;
 	}
 
+	/**
+	 * Start receiving connections from clients.
+	 */
 	public synchronized void startConection(String ip, int port) {
 		if (!conecting) {
 			conecting = true;
@@ -38,6 +41,9 @@ public class ServerComunicator implements Communicator {
 		}
 	}
 
+	/**
+	 * Open port and wait for connection.
+	 */
 	public void connect(String ip, int port) {
 		try {
 			serverSocket = new ServerSocket(port);
@@ -55,6 +61,9 @@ public class ServerComunicator implements Communicator {
 		}
 	}
 
+	/**
+	 * Stop receiving connections and close all connections.
+	 */
 	public synchronized void stopConection() {
 		if (conecting) {
 			conecting = false;
