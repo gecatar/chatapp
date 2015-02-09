@@ -81,7 +81,8 @@ public class ConectionPanel extends JFrame implements ActionListener {
 	 * Display message.
 	 */
 	public void displayMessage(String message) {
-		textArea.setText(message + newLine + textArea.getText());
+		textArea.setText(textArea.getText() + newLine + message);
+		textArea.setCaretPosition(textArea.getText().length());
 	}
 
 	/**
@@ -115,11 +116,11 @@ public class ConectionPanel extends JFrame implements ActionListener {
 	}
 
 	public void addUser(String name) {
-
+		displayMessage("User:" + name + " connected.");
 	}
 
 	public void removeUser(String name) {
-
+		displayMessage("User:" + name + " disconnected.");
 	}
 
 	public void actionPerformed(ActionEvent event) {
