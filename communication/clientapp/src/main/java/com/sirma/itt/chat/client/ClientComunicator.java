@@ -81,7 +81,7 @@ public class ClientComunicator implements Communicator {
 	}
 
 	/**
-	 * Start message transferer and send user details to server.
+	 * Start message transferrer and send user details to server.
 	 */
 	@Override
 	public void addUserSession(MessageTransferer transferer) {
