@@ -93,7 +93,7 @@ public class UserManager {
 	/**
 	 * Return name of user.
 	 */
-	private String getUserName(MessageTransferer transferer) {
+	public String getUserName(MessageTransferer transferer) {
 		for (Entry<String, MessageTransferer> user : users.entrySet()) {
 			if (user.getValue() == transferer) {
 				return user.getKey();

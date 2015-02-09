@@ -96,6 +96,7 @@ public class ServerComunicator implements Communicator {
 	 */
 	public void closeUserSession(MessageTransferer transferer) {
 		transferer.closeSocket();
+		listener.removeUser(userManager.getUserName(transferer));
 		userManager.removeUser(transferer);
 	}
 
@@ -105,6 +106,7 @@ public class ServerComunicator implements Communicator {
 	public void processMesage(Message message, MessageTransferer transferer) {
 		if (message.commandID == MessageCommand.USER_LOG_IN) {
 			userManager.registerUser(message.sender, transferer);
+			listener.addUser(userManager.getUserName(transferer));
 			return;
 		}
 		userManager.sendMesageToUser(message);
