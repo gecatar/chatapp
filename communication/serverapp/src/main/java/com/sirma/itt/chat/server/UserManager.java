@@ -18,7 +18,7 @@ public class UserManager {
 	 */
 	public void registerUser(String name, MessageTransferer transferer) {
 		if (!users.containsKey(name)) {
-			addUserInMap(name, transferer);
+			users.put(name, transferer);
 			sendUsersList(transferer);
 			notifyForNewUser(name);
 		} else {
@@ -100,15 +100,6 @@ public class UserManager {
 			}
 		}
 		return "";
-	}
-
-	/**
-	 * Add user to list whit registered users.
-	 */
-	private void addUserInMap(String name, MessageTransferer transferer) {
-		if (!users.containsKey(name)) {
-			users.put(name, transferer);
-		}
 	}
 
 	/**

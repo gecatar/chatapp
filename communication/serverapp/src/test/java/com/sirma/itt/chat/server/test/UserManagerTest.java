@@ -2,6 +2,7 @@ package com.sirma.itt.chat.server.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,18 +13,29 @@ import com.sirma.itt.chat.server.UserManager;
 import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageTransferer;
 
+/**
+ * Test correct management on users sessions.
+ * 
+ * @author GecaTM
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserManagerTest {
 
 	@Mock
-	MessageTransferer transferer;
+	private MessageTransferer transferer;
+	private UserManager userManager;
+
+	@Before
+	public void setUp() throws Exception {
+		userManager = new UserManager();
+	}
 
 	/**
 	 * Test correct registering on new user.
 	 */
 	@Test
 	public void registerUserFirstTest() {
-		UserManager userManager = new UserManager();
 		userManager.registerUser("test", transferer);
 		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
 				Mockito.any(Message.class));
@@ -34,10 +46,9 @@ public class UserManagerTest {
 	 */
 	@Test
 	public void registerUserSecondTest() {
-		UserManager userManager = new UserManager();
 		userManager.registerUser("test", transferer);
-		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
-				Mockito.any(Message.class));
+		userManager.registerUser("test", transferer);
+		Mockito.verify(transferer, Mockito.atLeast(1)).closeSocket();
 	}
 
 	/**
@@ -45,7 +56,9 @@ public class UserManagerTest {
 	 */
 	@Test
 	public void removeUserTest() {
-		UserManager userManager = new UserManager();
+		userManager.registerUser("phantom", transferer);
+		userManager.removeUser(transferer);
+		Mockito.verify(transferer, Mockito.never()).closeSocket();
 		userManager.registerUser("test", transferer);
 		userManager.removeUser(transferer);
 		assertEquals("Users:", userManager.toString());
@@ -56,7 +69,6 @@ public class UserManagerTest {
 	 */
 	@Test
 	public void sendMessageToUserTest() {
-		UserManager userManager = new UserManager();
 		userManager.registerUser("test", transferer);
 		userManager.sendMesageToUser(new Message("test", "message text"));
 		userManager.sendMesageToUser(new Message("missing", "message text"));
@@ -69,7 +81,6 @@ public class UserManagerTest {
 	 */
 	@Test
 	public void removeUsersSessionsTest() {
-		UserManager userManager = new UserManager();
 		userManager.registerUser("test", transferer);
 		userManager.registerUser("testSecond", transferer);
 		userManager.removeUsersSessions();
