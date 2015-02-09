@@ -56,6 +56,9 @@ public class ServerComunicatorTest {
 		Mockito.verify(transferer, Mockito.atLeast(1)).start();
 	}
 
+	/**
+	 * Check correct disposing on users sessions.
+	 */
 	@Test
 	public void closeUserSessionTest() {
 		comunicator.addUserSession(transferer);
