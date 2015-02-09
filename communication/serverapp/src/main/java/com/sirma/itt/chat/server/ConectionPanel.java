@@ -15,7 +15,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.comunicator.ComponentID;
-import com.sirma.itt.comunicator.ComunicatorListener;
 import com.sirma.itt.comunicator.MessageCommand;
 
 /**
@@ -24,8 +23,7 @@ import com.sirma.itt.comunicator.MessageCommand;
  * @author Evgeni Stefanov
  * 
  */
-public class ConectionPanel extends JFrame implements ComunicatorListener,
-		ActionListener {
+public class ConectionPanel extends JFrame implements ActionListener {
 
 	private static final String newLine = System.getProperty("line.separator");
 	private final JTextField ipAdress = new JTextField(15);
@@ -86,14 +84,27 @@ public class ConectionPanel extends JFrame implements ComunicatorListener,
 		textArea.setText(message + newLine + textArea.getText());
 	}
 
+	/**
+	 * Gets IP address.
+	 * 
+	 * @return IP address.
+	 */
 	public String getIP() {
 		return ipAdress.getText();
 	}
 
+	/**
+	 * Gets port
+	 * 
+	 * @return port.
+	 */
 	public int getPort() {
 		return Integer.parseInt(port.getText());
 	}
 
+	/**
+	 * Change connection status displayed on screen.
+	 */
 	public void setConectionStatus(MessageCommand status) {
 		if (status == MessageCommand.COMUNICATOR_CONECTING) {
 			displayMessage("Waiting for clients...");
@@ -101,10 +112,6 @@ public class ConectionPanel extends JFrame implements ComunicatorListener,
 		if (status == MessageCommand.COMUNICATOR_DISCONECTED) {
 			displayMessage("Close connection.");
 		}
-	}
-
-	public void showMesage(String name, String text) {
-
 	}
 
 	public void addUser(String name) {

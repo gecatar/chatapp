@@ -36,9 +36,6 @@ public class ServerComunicatorTest {
 				Mockito.any(MessageCommand.class));
 		message = new Message(MessageCommand.TEXT_MESAGE, "test");
 		message.sender = "test";
-		comunicator.processMesage(message, transferer);
-		Mockito.verify(listener, Mockito.atLeast(0)).showMesage(
-				Mockito.anyString(), Mockito.anyString());
 	}
 
 	@Test
