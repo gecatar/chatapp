@@ -115,14 +115,27 @@ public class ConectionPanel extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Called when new user connect to server.
+	 * 
+	 * @param name
+	 */
 	public void addUser(String name) {
 		displayMessage("User:" + name + " connected.");
 	}
 
+	/**
+	 * Called when user leave server.
+	 * 
+	 * @param name
+	 */
 	public void removeUser(String name) {
 		displayMessage("User:" + name + " disconnected.");
 	}
 
+	/**
+	 * When user press connect or disconnect buttons.
+	 */
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() instanceof JButton) {
 			JButton button = (JButton) event.getSource();
