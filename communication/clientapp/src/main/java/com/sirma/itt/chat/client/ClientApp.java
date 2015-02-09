@@ -2,6 +2,7 @@ package com.sirma.itt.chat.client;
 
 import org.apache.log4j.Logger;
 
+import com.sirma.itt.comunicator.ComunicatorShutdownHook;
 import com.sirma.itt.comunicator.Message;
 
 /**
@@ -16,6 +17,11 @@ public class ClientApp {
 			.getName());
 	private final View view = new View(this);
 	private final ClientComunicator comunicator = new ClientComunicator(view);
+
+	public ClientApp() {
+		Runtime.getRuntime().addShutdownHook(
+				new ComunicatorShutdownHook(comunicator));
+	}
 
 	/**
 	 * When user press connect button.
