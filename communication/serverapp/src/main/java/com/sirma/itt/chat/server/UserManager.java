@@ -34,7 +34,6 @@ public class UserManager {
 		if (isUserInMap(transferer)) {
 			String name = getUserName(transferer);
 			users.remove(name);
-			transferer.closeSocket();
 			notifyForUserLeaving(name);
 		}
 	}

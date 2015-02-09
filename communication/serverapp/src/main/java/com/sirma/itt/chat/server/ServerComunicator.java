@@ -73,6 +73,7 @@ public class ServerComunicator implements Communicator {
 		if (conecting) {
 			conecting = false;
 			listener.setConectionStatus(MessageCommand.COMUNICATOR_DISCONECTED);
+			userManager.removeUsersSessions();
 			if (serverSocket != null) {
 				try {
 					serverSocket.close();
@@ -94,6 +95,7 @@ public class ServerComunicator implements Communicator {
 	 * Close User DataTransferator, remove user from list and notify all users.
 	 */
 	public void closeUserSession(MessageTransferer transferer) {
+		transferer.closeSocket();
 		userManager.removeUser(transferer);
 	}
 

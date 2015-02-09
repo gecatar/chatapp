@@ -22,10 +22,22 @@ public class UserManagerTest {
 	 * Test correct registering on new user.
 	 */
 	@Test
-	public void registerUserTestSecond() {
+	public void registerUserFirstTest() {
 		UserManager userManager = new UserManager();
 		userManager.registerUser("test", transferer);
-		assertEquals("Users:\ntest", userManager.toString());
+		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
+				Mockito.any(Message.class));
+	}
+
+	/**
+	 * Test correct registering on new user.
+	 */
+	@Test
+	public void registerUserSecondTest() {
+		UserManager userManager = new UserManager();
+		userManager.registerUser("test", transferer);
+		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
+				Mockito.any(Message.class));
 	}
 
 	/**
@@ -37,7 +49,6 @@ public class UserManagerTest {
 		userManager.registerUser("test", transferer);
 		userManager.removeUser(transferer);
 		assertEquals("Users:", userManager.toString());
-		Mockito.verify(transferer, Mockito.atLeast(1)).closeSocket();
 	}
 
 	/**
@@ -47,7 +58,8 @@ public class UserManagerTest {
 	public void sendMessageToUserTest() {
 		UserManager userManager = new UserManager();
 		userManager.registerUser("test", transferer);
-		userManager.sendMesageToUser(new Message("sender", "message text"));
+		userManager.sendMesageToUser(new Message("test", "message text"));
+		userManager.sendMesageToUser(new Message("missing", "message text"));
 		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
 				Mockito.any(Message.class));
 	}

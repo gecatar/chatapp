@@ -13,20 +13,29 @@ import com.sirma.itt.comunicator.Message;
 import com.sirma.itt.comunicator.MessageCommand;
 import com.sirma.itt.comunicator.MessageTransferer;
 
+/**
+ * Test adding and removing clients from server.
+ * 
+ * @author GecaTM
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ServerComunicatorTest {
 
 	@Mock
-	ConectionPanel listener;
-	ServerComunicator comunicator;
+	private ConectionPanel listener;
+	private ServerComunicator comunicator;
 	@Mock
-	MessageTransferer transferer;
+	private MessageTransferer transferer;
 
 	@Before
 	public void setUp() throws Exception {
 		comunicator = new ServerComunicator(listener);
 	}
 
+	/**
+	 * Test correct redirecting on messages.
+	 */
 	@Test
 	public void proccesMessageTest() {
 		Message message = new Message(MessageCommand.USER_LOG_IN);
@@ -38,16 +47,20 @@ public class ServerComunicatorTest {
 		message.sender = "test";
 	}
 
+	/**
+	 * Test adding on users to server.
+	 */
 	@Test
 	public void addUserSessionTest() {
 		comunicator.addUserSession(transferer);
-		Mockito.verify(transferer, Mockito.atLeast(0)).start();
-		;
+		Mockito.verify(transferer, Mockito.atLeast(1)).start();
 	}
 
 	@Test
 	public void closeUserSessionTest() {
-
+		comunicator.addUserSession(transferer);
+		comunicator.closeUserSession(transferer);
+		Mockito.verify(transferer, Mockito.atLeast(1)).closeSocket();
 	}
 
 }
