@@ -31,7 +31,7 @@ public class UserManager {
 	 * Remove user from map. Close connection and notify other users.
 	 */
 	public void removeUser(MessageTransferer transferer) {
-		if (isUserInMap(transferer)) {
+		if (users.containsValue(transferer)) {
 			String name = getUserName(transferer);
 			users.remove(name);
 			notifyForUserLeaving(name);
@@ -81,13 +81,6 @@ public class UserManager {
 		for (String key : keys) {
 			transferer.sendData(new Message(key, MessageCommand.USER_CONECTED));
 		}
-	}
-
-	/**
-	 * Check is user in conversation list.
-	 */
-	private boolean isUserInMap(MessageTransferer transferer) {
-		return (users.containsValue(transferer));
 	}
 
 	/**
