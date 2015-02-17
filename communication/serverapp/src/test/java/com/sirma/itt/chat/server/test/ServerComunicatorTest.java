@@ -38,12 +38,14 @@ public class ServerComunicatorTest {
 	 */
 	@Test
 	public void proccesMessageTest() {
-		Message message = new Message(MessageCommand.USER_LOG_IN);
+		Message message = Message.create().setCommandID(
+				MessageCommand.USER_LOG_IN);
 		message.sender = "test";
 		comunicator.processMesage(message, transferer);
 		Mockito.verify(listener, Mockito.atLeast(0)).setConectionStatus(
 				Mockito.any(MessageCommand.class));
-		message = new Message(MessageCommand.TEXT_MESAGE, "test");
+		message = Message.create().setCommandID(MessageCommand.TEXT_MESAGE)
+				.setReceiver("test");
 		message.sender = "test";
 	}
 

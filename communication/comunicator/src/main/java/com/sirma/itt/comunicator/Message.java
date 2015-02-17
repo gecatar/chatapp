@@ -4,32 +4,36 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public MessageCommand commandID;
 	public String sender;
 	public String receiver;
 	public String text;
 
-	public Message(String receiver, String text) {
+	private Message() {
+	}
+
+	public static Message create() {
+		return new Message();
+	}
+
+	public Message setCommandID(MessageCommand commandId) {
+		this.commandID = commandId;
+		return this;
+	}
+
+	public Message setSender(String sender) {
+		this.sender = sender;
+		return this;
+	}
+
+	public Message setReceiver(String receiver) {
 		this.receiver = receiver;
+		return this;
+	}
+
+	public Message setText(String text) {
 		this.text = text;
-		commandID = MessageCommand.TEXT_MESAGE;
-	}
-
-	public Message(MessageCommand commandID) {
-		this.commandID = commandID;
-	}
-
-	public Message(MessageCommand commandID, String name) {
-		this.commandID = commandID;
-		receiver = name;
-	}
-
-	public Message(String name, MessageCommand commandID) {
-		this.commandID = commandID;
-		sender = name;
+		return this;
 	}
 }

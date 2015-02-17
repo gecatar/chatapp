@@ -61,7 +61,8 @@ public class UserManager {
 	 * Notify registered users for new users registered.
 	 */
 	private void notifyForNewUser(String name) {
-		Message message = new Message(name, MessageCommand.USER_CONECTED);
+		Message message = Message.create()
+				.setCommandID(MessageCommand.USER_CONECTED).setSender(name);
 		sendMessageToAll(message);
 	}
 
@@ -69,7 +70,8 @@ public class UserManager {
 	 * Notify registered users for leaving users.
 	 */
 	private void notifyForUserLeaving(String name) {
-		Message message = new Message(name, MessageCommand.USER_DISCONECTED);
+		Message message = Message.create()
+				.setCommandID(MessageCommand.USER_DISCONECTED).setSender(name);
 		sendMessageToAll(message);
 	}
 
@@ -79,7 +81,9 @@ public class UserManager {
 	private void sendUsersList(MessageTransferer transferer) {
 		Set<String> keys = users.keySet();
 		for (String key : keys) {
-			transferer.sendData(new Message(key, MessageCommand.USER_CONECTED));
+			transferer.sendData(Message.create()
+					.setCommandID(MessageCommand.USER_DISCONECTED)
+					.setSender(key));
 		}
 	}
 
@@ -99,7 +103,8 @@ public class UserManager {
 	 * Notify user for invalid user name.
 	 */
 	private void notifyForBadName(MessageTransferer transferer) {
-		transferer.sendData(new Message(MessageCommand.INVALID_USER_NAME));
+		transferer.sendData(Message.create().setCommandID(
+				MessageCommand.INVALID_USER_NAME));
 	}
 
 	/**

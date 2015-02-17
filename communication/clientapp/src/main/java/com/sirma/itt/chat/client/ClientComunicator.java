@@ -87,7 +87,8 @@ public class ClientComunicator implements Communicator {
 	public void addUserSession(MessageTransferer transferer) {
 		this.transferer = transferer;
 		transferer.start();
-		transferer.sendData(new Message(name, MessageCommand.USER_LOG_IN));
+		transferer.sendData(Message.create()
+				.setCommandID(MessageCommand.USER_LOG_IN).setSender(name));
 		listener.setConectionStatus(MessageCommand.USER_CONECTED);
 	}
 

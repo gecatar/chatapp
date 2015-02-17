@@ -188,7 +188,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			Conversation conversation = conversations.get(name);
 			conversationPanel.showConectionStatusIcon(conversation);
 			if (messageNotifyer.hasNotifications(name)) {
-				sendMessage(new Message(MessageCommand.MESSAGE_SEEN, name));
+				sendMessage(Message.create()
+						.setCommandID(MessageCommand.MESSAGE_SEEN)
+						.setReceiver(name));
 			}
 			messageNotifyer.removeNotification(name);
 			setTitle(messageNotifyer.getNotificationText());

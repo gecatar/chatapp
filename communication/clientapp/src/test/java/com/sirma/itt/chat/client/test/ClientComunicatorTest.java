@@ -58,23 +58,28 @@ public class ClientComunicatorTest {
 	@Test
 	public void proccesMessageTest() {
 		client = new ClientComunicator(listener);
-		client.processMesage(new Message(MessageCommand.INVALID_USER_NAME),
+		client.processMesage(
+				Message.create().setCommandID(MessageCommand.INVALID_USER_NAME),
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).setConectionStatus(
 				Mockito.any(MessageCommand.class));
-		client.processMesage(new Message(MessageCommand.TEXT_MESAGE),
+		client.processMesage(
+				Message.create().setCommandID(MessageCommand.TEXT_MESAGE),
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).showMesage(
 				Mockito.anyString(), Mockito.anyString());
-		client.processMesage(new Message(MessageCommand.USER_CONECTED),
+		client.processMesage(
+				Message.create().setCommandID(MessageCommand.USER_CONECTED),
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).addUser(
 				Mockito.anyString());
-		client.processMesage(new Message(MessageCommand.MESSAGE_SEEN),
+		client.processMesage(
+				Message.create().setCommandID(MessageCommand.MESSAGE_SEEN),
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1))
 				.showMessageReadedNotification(Mockito.anyString());
-		client.processMesage(new Message(MessageCommand.USER_DISCONECTED),
+		client.processMesage(
+				Message.create().setCommandID(MessageCommand.USER_DISCONECTED),
 				transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).removeUser(
 				Mockito.anyString());

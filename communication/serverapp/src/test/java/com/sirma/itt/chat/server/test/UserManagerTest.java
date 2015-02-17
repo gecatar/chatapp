@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.sirma.itt.chat.server.UserManager;
 import com.sirma.itt.comunicator.Message;
+import com.sirma.itt.comunicator.MessageCommand;
 import com.sirma.itt.comunicator.MessageTransferer;
 
 /**
@@ -70,8 +71,12 @@ public class UserManagerTest {
 	@Test
 	public void sendMessageToUserTest() {
 		userManager.registerUser("test", transferer);
-		userManager.sendMesageToUser(new Message("test", "message text"));
-		userManager.sendMesageToUser(new Message("missing", "message text"));
+		userManager.sendMesageToUser(Message.create()
+				.setCommandID(MessageCommand.TEXT_MESAGE).setReceiver("test")
+				.setText("message text"));
+		userManager.sendMesageToUser(Message.create()
+				.setCommandID(MessageCommand.TEXT_MESAGE)
+				.setReceiver("missing").setText("message text"));
 		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
 				Mockito.any(Message.class));
 	}

@@ -16,6 +16,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import com.sirma.itt.comunicator.Message;
+import com.sirma.itt.comunicator.MessageCommand;
 
 /**
  * Manage sending and receiving messages.
@@ -117,7 +118,9 @@ public class Conversation extends JSplitPane implements ActionListener,
 				+ myMessageHTMLcloseTag;
 		textArea.setText(htmlMessage);
 		textArea.setCaretPosition(textArea.getDocument().getLength());
-		view.sendMessage(new Message(getName(), textField.getText()));
+		view.sendMessage(Message.create()
+				.setCommandID(MessageCommand.TEXT_MESAGE)
+				.setReceiver(getName()).setText(textField.getText()));
 		textField.setText("");
 	}
 
