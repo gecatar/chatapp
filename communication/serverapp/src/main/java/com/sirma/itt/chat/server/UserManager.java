@@ -82,7 +82,7 @@ public class UserManager {
 		Set<String> keys = users.keySet();
 		for (String key : keys) {
 			transferer.sendData(Message.create()
-					.setCommandID(MessageCommand.USER_DISCONECTED)
+					.setCommandID(MessageCommand.USER_CONECTED)
 					.setSender(key));
 		}
 	}
