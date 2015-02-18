@@ -26,7 +26,28 @@ public class ClientComunicatorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Mockito.when(transferer.readMessage()).thenThrow(new IOException());
+		client = Mockito.spy(new ClientComunicator(listener));
+	}
+
+	@Test
+	public void startConnectionTest() {
+		Mockito.when(client.connect("test", 0)).thenReturn(true);
+		client.startConection("test", 0);
+		client.startConection("test", 0);
+		client.stopConection();
+		client.startConection("test", 0);
+		Mockito.verify(listener, Mockito.times(2)).setConectionStatus(
+				MessageCommand.COMUNICATOR_CONECTING);
+	}
+
+	@Test
+	public void stopConnectionTest() {
+		Mockito.when(client.connect("test", 0)).thenReturn(true);
+		client.stopConection();
+		client.startConection("test", 0);
+		client.stopConection();
+		Mockito.verify(listener, Mockito.times(1)).setConectionStatus(
+				MessageCommand.COMUNICATOR_DISCONECTED);
 	}
 
 	/**
@@ -34,7 +55,6 @@ public class ClientComunicatorTest {
 	 */
 	@Test
 	public void addUserSessionTest() throws ClassNotFoundException, IOException {
-		client = new ClientComunicator(listener);
 		client.addUserSession(transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).setConectionStatus(
 				Mockito.any(MessageCommand.class));
@@ -47,7 +67,6 @@ public class ClientComunicatorTest {
 	 */
 	@Test
 	public void closeUserSessionTest() {
-		client = new ClientComunicator(listener);
 		client.addUserSession(transferer);
 		client.closeUserSession(transferer);
 		Mockito.verify(listener, Mockito.atLeast(1)).setConectionStatus(
@@ -57,7 +76,6 @@ public class ClientComunicatorTest {
 
 	@Test
 	public void proccesMessageTest() {
-		client = new ClientComunicator(listener);
 		client.processMesage(
 				Message.create().setCommandID(MessageCommand.INVALID_USER_NAME),
 				transferer);

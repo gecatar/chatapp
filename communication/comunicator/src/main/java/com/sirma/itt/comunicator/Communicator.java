@@ -51,6 +51,6 @@ public interface Communicator {
 	 * @param port
 	 *            the port remote server.
 	 */
-	public void connect(String ip, int port);
+	public boolean connect(String ip, int port);
 
 }

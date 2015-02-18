@@ -49,7 +49,7 @@ public class ServerComunicator implements Communicator {
 	/**
 	 * Open port and wait for connection.
 	 */
-	public void connect(String ip, int port) {
+	public boolean connect(String ip, int port) {
 		try {
 			serverSocket = new ServerSocket(port);
 			while (true) {
@@ -64,6 +64,7 @@ public class ServerComunicator implements Communicator {
 		} finally {
 			stopConection();
 		}
+		return false;
 	}
 
 	/**

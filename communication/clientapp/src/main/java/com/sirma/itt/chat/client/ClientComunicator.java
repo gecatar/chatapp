@@ -50,15 +50,17 @@ public class ClientComunicator implements Communicator {
 	 * Create connection whit remote server.
 	 */
 	@Override
-	public void connect(String ip, int port) {
+	public boolean connect(String ip, int port) {
 		try {
 			socket = new Socket(ip, port);
 			addUserSession(new MessageTransferer(this, socket,
 					new ObjectOutputStream(socket.getOutputStream()),
 					new ObjectInputStream(socket.getInputStream())));
+			return true;
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, e);
 			stopConection();
+			return false;
 		}
 	}
 
