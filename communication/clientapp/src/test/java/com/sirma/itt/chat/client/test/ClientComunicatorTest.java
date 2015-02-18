@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -18,15 +17,16 @@ import com.sirma.itt.comunicator.MessageTransferer;
 @RunWith(MockitoJUnitRunner.class)
 public class ClientComunicatorTest {
 
-	@Mock
 	View listener;
 	ClientComunicator client;
-	@Mock
 	MessageTransferer transferer;
 
 	@Before
 	public void setUp() throws Exception {
+		listener = Mockito.mock(View.class);
 		client = Mockito.spy(new ClientComunicator(listener));
+		transferer = Mockito.mock(MessageTransferer.class);
+
 	}
 
 	@Test
@@ -48,6 +48,18 @@ public class ClientComunicatorTest {
 		client.stopConection();
 		Mockito.verify(listener, Mockito.times(1)).setConectionStatus(
 				MessageCommand.COMUNICATOR_DISCONECTED);
+	}
+
+	/**
+	 * Test send message method.
+	 */
+	@Test
+	public void sendMessageTest() {
+		client.sendMesage(Message.create());
+		client.addUserSession(transferer);
+		client.sendMesage(Message.create());
+		Mockito.verify(transferer, Mockito.atLeast(1)).sendData(
+				Mockito.any(Message.class));
 	}
 
 	/**
