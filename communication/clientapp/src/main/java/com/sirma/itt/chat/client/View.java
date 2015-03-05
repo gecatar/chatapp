@@ -89,6 +89,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	}
 
 	private void initialize(ResourceBundle bundle) {
+		setTitle(bundle.getString("client_title"));
 		fileMenu.setText(bundle.getString(ComponentID.FILE_MENU_ID));
 		connectItem.setText(bundle.getString(ComponentID.CONNECT_MENU_ITEM_ID));
 		conversationMenu.setText(bundle
