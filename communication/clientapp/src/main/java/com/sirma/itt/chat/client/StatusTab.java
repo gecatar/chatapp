@@ -81,6 +81,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	 */
 	public void writeText(String text) {
 		textArea.setText(textArea.getText() + newLine + text);
+		textArea.setCaretPosition(textArea.getText().length());
 	}
 
 	/**
