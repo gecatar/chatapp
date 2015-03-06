@@ -35,7 +35,6 @@ public class Conversation extends JSplitPane implements ActionListener,
 	private static final String otherMessageHTMLcloseTag = "</font>";
 	private static final String dateFormatHTMLopenTag = "<font size=\"4\">";
 	private static final String dateFormatHTMLcloseTag = "</font>";
-	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final View view;
 	private final JEditorPane textArea = new JEditorPane();
